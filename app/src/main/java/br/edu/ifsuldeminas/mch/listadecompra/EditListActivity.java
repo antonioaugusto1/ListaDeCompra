@@ -1,18 +1,18 @@
 package br.edu.ifsuldeminas.mch.listadecompra;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.TextView;
 
 public class EditListActivity extends AppCompatActivity {
+
     private EditText itemEditText;
-    private List<String> itemList;
+    private EditText itemsAddedEditText;
+    private Button addButton;
+    private Button finishButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,25 +20,33 @@ public class EditListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_list);
 
         itemEditText = findViewById(R.id.itemEditText);
-        Button addButton = findViewById(R.id.addButton);
-
-        itemList = new ArrayList<>();
+        itemsAddedEditText = findViewById(R.id.itemsAddedEditText);
+        addButton = findViewById(R.id.addButton);
+        finishButton = findViewById(R.id.finishButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = itemEditText.getText().toString();
-                if (!item.isEmpty()) {
-                    addItemToList(item);
+                String newItem = itemEditText.getText().toString();
+                String currentItems = itemsAddedEditText.getText().toString();
+
+                if (!newItem.isEmpty()) {
+                    if (!currentItems.isEmpty()) {
+                        currentItems += "\n";
+                    }
+                    currentItems += newItem;
+                    itemsAddedEditText.setText(currentItems);
                     itemEditText.setText("");
                 }
             }
         });
-    }
 
-    private void addItemToList(String item) {
-        itemList.add(item);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String finalItems = itemsAddedEditText.getText().toString();
+                // TODO: Pass the finalItems data to the next activity or perform any desired action
+            }
+        });
     }
 }
-
-

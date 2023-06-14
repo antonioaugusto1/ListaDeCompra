@@ -5,4 +5,10 @@
     <string name="comecar">Começar</string>
     <string name="item">Digite o nome do item</string>
     <string name="adicionarItem">Adicionar</string>
+    <string name="finalizar">FInalizar</string>
+    <string name="itemAdicionado">Itens já adicionados:</string>
+    <string name="itemCompra"></string>
+    <string name="descricao_items_added">Itens Adicionados</string>
+
+
 </resources>

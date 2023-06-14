@@ -1,24 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".EditListActivity">
 
-    <EditText
-        android:id="@+id/itemEditText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/item" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/adicionarItem"
-        app:backgroundTint="@color/grey" />
+        <TextView
+            android:id="@+id/itemsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/itemAdicionado"
+            android:textSize="18sp" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/itemsAddedEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:enabled="false"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:scrollbars="vertical" />
+
+        <EditText
+            android:id="@+id/itemEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/item" />
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adicionarItem"
+            app:backgroundTint="@color/grey" />
+
+        <Button
+            android:id="@+id/finishButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Finalizar" />
+
+    </LinearLayout>
+</ScrollView>
