@@ -44,14 +44,14 @@ public class EditListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String newItem = itemEditText.getText().toString();
-                String currentItems = itemsAddedEditText.getText().toString();
+                String itemAdd = itemsAddedEditText.getText().toString();
 
                 if (!newItem.isEmpty()) {
-                    if (!currentItems.isEmpty()) {
-                        currentItems += "\n";
+                    if (!itemAdd.isEmpty()) {
+                        itemAdd += "\n";
                     }
-                    currentItems += newItem;
-                    itemsAddedEditText.setText(currentItems);
+                    itemAdd += newItem;
+                    itemsAddedEditText.setText(itemAdd);
                     itemEditText.setText("");
                 } else {
                     Toast.makeText(EditListActivity.this, "Escreva o nome do item", Toast.LENGTH_SHORT).show();
@@ -62,17 +62,17 @@ public class EditListActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String currentItems = itemsAddedEditText.getText().toString();
+                String itemlDel = itemsAddedEditText.getText().toString();
 
-                if (!currentItems.isEmpty()) {
+                if (!itemlDel.isEmpty()) {
                     // Remove the last item
-                    int lastItemIndex = currentItems.lastIndexOf('\n');
+                    int lastItemIndex = itemlDel.lastIndexOf('\n');
                     if (lastItemIndex >= 0) {
-                        currentItems = currentItems.substring(0, lastItemIndex);
+                        itemlDel = itemlDel.substring(0, lastItemIndex);
                     } else {
-                        currentItems = "";
+                        itemlDel = "";
                     }
-                    itemsAddedEditText.setText(currentItems);
+                    itemsAddedEditText.setText(itemlDel);
                 } else {
                     Toast.makeText(EditListActivity.this, "Não há itens para serem excluídos", Toast.LENGTH_SHORT).show();
                 }
