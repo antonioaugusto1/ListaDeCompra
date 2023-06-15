@@ -5,10 +5,13 @@
     <string name="comecar">Começar</string>
     <string name="item">Digite o nome do item</string>
     <string name="adicionarItem">Adicionar</string>
+    <string name="deletarItem">Excluir último</string>
     <string name="finalizar">FInalizar</string>
     <string name="itemAdicionado">Itens já adicionados:</string>
     <string name="itemCompra"></string>
     <string name="descricao_items_added">Itens Adicionados</string>
+    <string name="listaCompra">Sua lista de compra:</string>
+    <string name="backButton">Refazer lista</string>
 
 
 </resources>

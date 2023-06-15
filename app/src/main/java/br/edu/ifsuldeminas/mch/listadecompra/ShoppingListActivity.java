@@ -1,41 +1,68 @@
 package br.edu.ifsuldeminas.mch.listadecompra;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShoppingListActivity extends AppCompatActivity {
-    private List<String> shoppingItems;
-    private LinearLayout shoppingItemsLayout;
+
+    private LinearLayout itemsLayout;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
 
-        shoppingItemsLayout = findViewById(R.id.shoppingItemsLayout);
+        itemsLayout = findViewById(R.id.itemsLayout);
+        backButton = findViewById(R.id.backButton);
 
-        shoppingItems = new ArrayList<>();
+        // Obter a lista de itens da atividade anterior
+        String items = getIntent().getStringExtra("items");
 
-        // Exemplo de itens de compra
-        shoppingItems.add("Maçã");
-        shoppingItems.add("Banana");
-        shoppingItems.add("Leite");
+        // Verificar se existem itens
+        if (items != null && !items.isEmpty()) {
+            String[] itemList = items.split("\n");
 
-        for (String item : shoppingItems) {
-            addShoppingItem(item);
+            // Adicionar os itens ao layout
+            for (String item : itemList) {
+                addItemToLayout(item);
+            }
         }
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Voltar para a tela EditListActivity
+                Intent intent = new Intent(ShoppingListActivity.this, EditListActivity.class);
+                startActivity(intent);
+                finish(); // Opcional: Finalizar a atividade atual se não for mais necessária
+            }
+        });
     }
 
-    private void addShoppingItem(String item) {
-        TextView itemTextView = new TextView(this);
-        itemTextView.setText(item);
-        shoppingItemsLayout.addView(itemTextView);
+    private void addItemToLayout(String item) {
+        TextView textView = new TextView(this);
+        textView.setText(item);
+        textView.setTextSize(16);
+        textView.setPadding(0, 8, 0, 8);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView clickedTextView = (TextView) v;
+                // Alterar o estilo do texto quando clicado (marcar como concluído)
+                if ((clickedTextView.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) {
+                    clickedTextView.setPaintFlags(clickedTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                } else {
+                    clickedTextView.setPaintFlags(clickedTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+            }
+        });
+        itemsLayout.addView(textView);
     }
 }
